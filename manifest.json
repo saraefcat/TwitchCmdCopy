@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "1.0.0",
+  "default_locale": "en",
+  "description": "__MSG_appDesc__",
+  "icons": {
+    "16": "images/icon/icon16.png",
+    "48": "images/icon/icon48.png",
+    "128": "images/icon/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://dashboard.twitch.tv/**"],
+      "js": ["js/main.js"],
+      "run_at": "document_end",
+      "all_frames": false
+    }
+  ],
+  "permissions": ["activeTab"],
+  "web_accessible_resources": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "resources": ["/images/*"]
+    }
+  ]
+}
