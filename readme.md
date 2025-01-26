@@ -28,9 +28,11 @@ Twitch配信者が配信マネージャでシャウトアウト、レイドの�
 
 * 配信マネージャーのアクティビティフィードまたはチャットに表示されているユーザをクリックしユーザプロフィールを表示させる。
   * アクティビティフィードの場合
-![アクティビティフィード](https://raw.githubusercontent.com/saraefcat/TwitchCmdCopy/orphan-doc//use-activity.png)
+
+  ![アクティビティフィード](https://raw.githubusercontent.com/saraefcat/TwitchCmdCopy/orphan-doc//use-activity.png)
   * チャットの場合
-![チャット](https://raw.githubusercontent.com/saraefcat/TwitchCmdCopy/orphan-doc//use-chat.png)
+
+  ![チャット](https://raw.githubusercontent.com/saraefcat/TwitchCmdCopy/orphan-doc//use-chat.png)
 
 * ユーザプロフィールの下部に元々表示されていた各種ボタンに新規に`ShoutOut`,`!so`,`RAID`のボタンが表示される。
   * ボタンをクリックすると`コマンド 名半角スペース ユーザID`がクリップボードにコピーされる。
