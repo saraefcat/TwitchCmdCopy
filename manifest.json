@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "__MSG_appName__",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "default_locale": "en",
   "description": "__MSG_appDesc__",
   "icons": {
@@ -17,11 +17,15 @@
       "all_frames": false
     }
   ],
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage"],
   "web_accessible_resources": [
     {
       "matches": ["http://*/*", "https://*/*"],
       "resources": ["/images/*"]
     }
-  ]
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": false
+  }
 }

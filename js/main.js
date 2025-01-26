@@ -16,11 +16,34 @@ document.addEventListener("click", (event) => {
 
     // 空DIV挿入
     createEmptyDiv();
-    // シャウトアウトボタンを生成する
-    createShoutOut(userId);
-    createSo(userId);
-    // Raidボタンを生成する
-    createRaid(userId);
+
+    chrome.storage.sync.get(["shoutOut", "so", "raid"], (items) => {
+      if (JSON.stringify(items) === '{}') {
+        // 初期値で動作
+        items = {
+          'shoutOut':true,
+          'so':false,
+          'raid':true
+        };
+      }
+      const shoutOut = items.shoutOut;
+      if (shoutOut) {
+        // シャウトアウトボタンを生成する
+        createShoutOut(userId);
+      }
+
+      const so = items.so;
+      if (so) {
+        // soボタンを生成する
+        createSo(userId);
+      }
+
+      const raid = items.raid;
+      if (raid) {
+        // Raidボタンを生成する
+        createRaid(userId);
+      }
+    });
   }
 });
 
