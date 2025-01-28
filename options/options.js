@@ -13,7 +13,10 @@ const saveOptions = () => {
     () => {
       // Update status to let user know options were saved.
       const status = document.getElementById("status");
-      status.textContent = "Options saved.";
+
+      const message = chrome.i18n.getMessage("optionSaveMessage");
+      status.textContent = message;
+
       setTimeout(() => {
         status.textContent = "";
       }, 750);
@@ -31,5 +34,13 @@ const restoreOptions = () => {
   });
 };
 
+const i18nRun = () => {
+  const title = chrome.i18n.getMessage("optionTile");
+  const save = chrome.i18n.getMessage("optionSave");
+  document.getElementById("title").innerHTML = title;
+  document.getElementById("save").innerHTML = save;
+};
+
 document.addEventListener("DOMContentLoaded", restoreOptions);
+document.addEventListener("DOMContentLoaded", i18nRun);
 document.getElementById("save").addEventListener("click", saveOptions);
