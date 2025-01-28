@@ -97,7 +97,6 @@ document.addEventListener("click", (event) => {
  * 空DIVを生成する
  */
 function createEmptyDiv() {
-  // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
     ".Layout-sc-1xcs6mc-0.gXJpLW",
     (elements) => {
@@ -137,6 +136,8 @@ function createShoutOut(userId) {
   shoutoutButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
     navigator.clipboard.writeText(`/shoutout ${userId}`);
+    const chat = document.querySelectorAll("[data-a-target='chat-input']")[0];
+    chat.focus();
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
@@ -179,6 +180,8 @@ function createSo(userId) {
   shoutoutButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
     navigator.clipboard.writeText(`!so ${userId}`);
+    const chat = document.querySelectorAll("[data-a-target='chat-input']")[0];
+    chat.focus();
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
@@ -221,6 +224,8 @@ function createRaid(userId) {
   raidButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
     navigator.clipboard.writeText(`/raid ${userId}`);
+    const chat = document.querySelectorAll("[data-a-target='chat-input']")[0];
+    chat.focus();
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
