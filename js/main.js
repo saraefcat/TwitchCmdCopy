@@ -4,7 +4,7 @@
 document.addEventListener("click", (event) => {
   const target = event.target;
   if (
-    ["ScCoreLink-sc-16kq0mq-0", "dNEDHF", "tw-link"].every((e) =>
+    ["ScCoreLink-sc-16kq0mq-0", "tw-link"].every((e) =>
       target.classList.contains(e)
     )
   ) {
@@ -14,36 +14,7 @@ document.addEventListener("click", (event) => {
     const match = userName.match(regex) ?? ["", userName];
     const userId = match[1];
 
-    // 空DIV挿入
-    createEmptyDiv();
-
-    chrome.storage.sync.get(["shoutOut", "so", "raid"], (items) => {
-      if (JSON.stringify(items) === '{}') {
-        // 初期値で動作
-        items = {
-          'shoutOut':true,
-          'so':false,
-          'raid':true
-        };
-      }
-      const shoutOut = items.shoutOut;
-      if (shoutOut) {
-        // シャウトアウトボタンを生成する
-        createShoutOut(userId);
-      }
-
-      const so = items.so;
-      if (so) {
-        // soボタンを生成する
-        createSo(userId);
-      }
-
-      const raid = items.raid;
-      if (raid) {
-        // Raidボタンを生成する
-        createRaid(userId);
-      }
-    });
+    createButton(userId);
   }
 });
 
@@ -61,13 +32,7 @@ document.addEventListener("click", (event) => {
     const match = userName.match(regex) ?? ["", userName];
     const userId = match[1];
 
-    // 空DIV挿入
-    createEmptyDiv();
-    // シャウトアウトボタンを生成する
-    createShoutOut(userId);
-    createSo(userId);
-    // Raidボタンを生成する
-    createRaid(userId);
+    createButton(userId);
   }
 });
 
@@ -83,31 +48,68 @@ document.addEventListener("click", (event) => {
     const match = userName.match(regex) ?? ["", userName];
     const userId = match[1];
 
-    // 空DIV挿入
-    createEmptyDiv();
-    // シャウトアウトボタンを生成する
-    createShoutOut(userId);
-    createSo(userId);
-    // Raidボタンを生成する
-    createRaid(userId);
+    createButton(userId);
   }
 });
+
+/**
+ *
+ * @param {*} userId
+ */
+function createButton(userId) {
+  chrome.storage.sync.get(["shoutOut", "so", "raid"], (items) => {
+    if (JSON.stringify(items) === "{}") {
+      // 初期値で動作
+      items = {
+        shoutOut: true,
+        so: false,
+        raid: true,
+      };
+    }
+    const shoutOut = items.shoutOut;
+    if (shoutOut) {
+      // 空DIV挿入
+      createEmptyDiv();
+
+      // シャウトアウトボタンを生成する
+      createShoutOut(userId);
+    }
+
+    const so = items.so;
+    if (so) {
+      // 空DIV挿入
+      createEmptyDiv();
+
+      // soボタンを生成する
+      createSo(userId);
+    }
+
+    const raid = items.raid;
+    if (raid) {
+      // 空DIV挿入
+      createEmptyDiv();
+
+      // Raidボタンを生成する
+      createRaid(userId);
+    }
+  });
+}
 
 /**
  * 空DIVを生成する
  */
 function createEmptyDiv() {
   waitForElement(
-    ".Layout-sc-1xcs6mc-0.gXJpLW",
+    ".Layout-sc-1xcs6mc-0.gQGOcr",
     (elements) => {
       elements.forEach((element) => {
         const oyaWaku = document.createElement("div");
-        oyaWaku.classList.add("Layout-sc-1xcs6mc-0", "dVLyvs");
+        oyaWaku.classList.add("Layout-sc-1xcs6mc-0", "gPVkpw");
 
         const koWaku01 = document.createElement("div");
         koWaku01.classList.add(
           "InjectLayout-sc-1i43xsx-0",
-          "kBtJDm",
+          "iDMNUO",
           "viewer-card-drag-cancel"
         );
 
@@ -129,9 +131,9 @@ function createShoutOut(userId) {
   shoutoutButton.textContent = "ShoutOut";
   shoutoutButton.classList.add(
     "ScCoreButton-sc-ocjdkq-0",
-    "khjbBN",
-    "gPDjGr",
-    "bFxzAY"
+    "jgtOPo",
+    "kJMgAB",
+    "kaIUar"
   );
   shoutoutButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
@@ -141,16 +143,16 @@ function createShoutOut(userId) {
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
-    ".Layout-sc-1xcs6mc-0.gXJpLW",
+    ".Layout-sc-1xcs6mc-0.gQGOcr",
     (elements) => {
       elements.forEach((element) => {
         const oyaWaku = document.createElement("div");
-        oyaWaku.classList.add("Layout-sc-1xcs6mc-0", "dVLyvs");
+        oyaWaku.classList.add("Layout-sc-1xcs6mc-0");
 
         const koWaku01 = document.createElement("div");
         koWaku01.classList.add(
           "InjectLayout-sc-1i43xsx-0",
-          "kBtJDm",
+          "iDMNUO",
           "viewer-card-drag-cancel"
         );
 
@@ -173,9 +175,9 @@ function createSo(userId) {
   shoutoutButton.textContent = "!so";
   shoutoutButton.classList.add(
     "ScCoreButton-sc-ocjdkq-0",
-    "khjbBN",
-    "gPDjGr",
-    "bFxzAY"
+    "jgtOPo",
+    "kJMgAB",
+    "kaIUar"
   );
   shoutoutButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
@@ -185,16 +187,16 @@ function createSo(userId) {
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
-    ".Layout-sc-1xcs6mc-0.gXJpLW",
+    ".Layout-sc-1xcs6mc-0.gQGOcr",
     (elements) => {
       elements.forEach((element) => {
         const oyaWaku = document.createElement("div");
-        oyaWaku.classList.add("Layout-sc-1xcs6mc-0", "dVLyvs");
+        oyaWaku.classList.add("Layout-sc-1xcs6mc-0");
 
         const koWaku01 = document.createElement("div");
         koWaku01.classList.add(
           "InjectLayout-sc-1i43xsx-0",
-          "kBtJDm",
+          "iDMNUO",
           "viewer-card-drag-cancel"
         );
 
@@ -217,9 +219,9 @@ function createRaid(userId) {
   raidButton.textContent = "RAID";
   raidButton.classList.add(
     "ScCoreButton-sc-ocjdkq-0",
-    "khjbBN",
-    "gPDjGr",
-    "bFxzAY"
+    "jgtOPo",
+    "kJMgAB",
+    "kaIUar"
   );
   raidButton.addEventListener("click", () => {
     // クリップボードにシャウトアウトコマンドをコピーする
@@ -229,16 +231,16 @@ function createRaid(userId) {
   });
   // シャウトアウトボタンをDOMに追加する適切な場所に挿入
   waitForElement(
-    ".Layout-sc-1xcs6mc-0.gXJpLW",
+    ".Layout-sc-1xcs6mc-0.gQGOcr",
     (elements) => {
       elements.forEach((element) => {
         const oyaWaku = document.createElement("div");
-        oyaWaku.classList.add("Layout-sc-1xcs6mc-0", "dVLyvs");
+        oyaWaku.classList.add("Layout-sc-1xcs6mc-0");
 
         const koWaku01 = document.createElement("div");
         koWaku01.classList.add(
           "InjectLayout-sc-1i43xsx-0",
-          "kBtJDm",
+          "iDMNUO",
           "viewer-card-drag-cancel"
         );
 
